@@ -49,6 +49,13 @@ public class UserPageController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "/registration")
+    public ModelAndView yeniKayit() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("registration");
+        return modelAndView;
+    }
+
     @RequestMapping(value = "/hello")
     public ModelAndView merhaba() {
         ModelAndView modelAndView= new ModelAndView();

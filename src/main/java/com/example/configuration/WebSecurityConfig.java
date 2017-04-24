@@ -21,7 +21,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception{
         http
                 .authorizeRequests()
-                .antMatchers("/","/home").permitAll()
+                .antMatchers("/","/home","/registration").permitAll()
                 .antMatchers("/kaydet","/edit").hasAuthority("admin")  // kaydet ve edit sayfasını sadece admin yetkisi olan kişi görebilir
                 .antMatchers("/login").permitAll()
                 .anyRequest().authenticated()
