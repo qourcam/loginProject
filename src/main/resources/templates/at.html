@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>User List</title>
+
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script language="javascript" type="text/javascript">
+        <!-- Hide JavaScript
+        $(document).ready(function() {
+            $('#example').DataTable();
+        } );
+
+        -->
+
+    </script>
+
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">qourcam</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a th:href="@{/hello}">Ana Sayfa</a></li>
+            <li><a th:href="@{/kaydet}">Kişi Ekleme</a></li>
+            <li><a th:href="@{/edit}">Kayıt Düzeltme</a></li>
+            <li><a th:href="@{/at}">Tüm Kullanıcılar</a></li>
+            <li><a th:href="@{/passwordChange}">Şifre Değişikliği</a></li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Rol
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a th:href="@{/role/edit}">Rol Düzenle</a></li>
+                    <li><a th:href="@{/student/list}">Öğrenci Listesi</a></li>
+                    <li><a href="#">boş</a></li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a th:href="@{/logout}"><span class="glyphicon glyphicon-log-in"></span>  <b>Çıkış</b></a></li>
+        </ul>
+    </div>
+</nav>
+<div class="container" style="margin-top:50px">
+<h2>User Table</h2>
+<table th:id="example" class="table table-striped table-bordered" id="userTable">
+    <thead>
+    <tr >
+        <th>ID</th>
+        <th>Username</th>
+        <th>Password</th>
+        <th>Enabled</th>
+        <div th:if="${role == 'admin'}">
+            <th> İşlemler</th>
+        </div>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${users}" class="gorkem">
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.username}"></td>
+        <td th:text="${user.password}"></td>
+        <td th:text="${user.enabled}"></td>
+        <td>
+            <div th:if="${role == 'admin'}">
+            <form th:action="@{/delete(id=${user.id})}"  method="post">
+                <input type="submit" class="btn btn-primary" value="SİL"/>
+            </form>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</div>
+
+<div th:if="${role == 'admin'}">
+    <form th:action="@{/edit}" method="get">
+        <input type="submit" class="btn btn-primary" value="Düzenle"/>
+    </form>
+</div>
+
+</body>
+</html>

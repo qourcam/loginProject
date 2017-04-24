@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title> Arama </title>
+</head>
+<body>
+<h3> Kullanıcı Arama</h3>
+<form th:action="@{/search}" th:object="${name}" method="post">
+    <div><label> User Name : <input type="text" name="name"/> </label></div>
+    <div><input type="submit" value="Ara"/></div>
+
+</form>
+</body>
+</html>
