@@ -118,7 +118,6 @@ public class UserRestController {
             modelAndView.setViewName("passwordChange");
         }else{
             modelAndView.setViewName("403");
-
         }
         return modelAndView;
     }

@@ -54,7 +54,7 @@
     <tr >
         <th>ID</th>
         <th>Username</th>
-        <th>Password</th>
+        <th>Role</th>
         <th>Enabled</th>
         <div th:if="${role == 'admin'}">
             <th> İşlemler</th>
@@ -66,7 +66,7 @@
     <tr th:each="user : ${users}" class="gorkem">
         <td th:text="${user.id}"></td>
         <td th:text="${user.username}"></td>
-        <td th:text="${user.password}"></td>
+        <td th:text="${user.role.role}"></td>
         <td th:text="${user.enabled}"></td>
         <td>
             <div th:if="${role == 'admin'}">

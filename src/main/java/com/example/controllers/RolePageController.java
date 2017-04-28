@@ -1,5 +1,6 @@
 package com.example.controllers;
 
+import com.example.entities.Role;
 import com.example.services.RoleService;
 import com.example.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,7 @@ public class RolePageController {
         ModelAndView modelAndView= new ModelAndView();
         modelAndView.addObject("users", userService.getAll());
         modelAndView.addObject("roles", roleService.getAll());
+        modelAndView.addObject("niyazi",new Role());
         modelAndView.setViewName("editRole");
         System.out.println(userService.findUser(2).getRole().getRole());
         return modelAndView;

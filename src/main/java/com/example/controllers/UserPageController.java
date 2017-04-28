@@ -1,5 +1,6 @@
 package com.example.controllers;
 
+import com.example.entities.Role;
 import com.example.entities.User;
 import com.example.services.RoleService;
 import com.example.services.UserService;
@@ -49,10 +50,33 @@ public class UserPageController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/registration")
+    @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public ModelAndView yeniKayit() {
         ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("user", new User());
         modelAndView.setViewName("registration");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/registration", method = RequestMethod.POST)
+    public ModelAndView yeniKayit(@Valid User user, BindingResult bindingResult) {
+        ModelAndView modelAndView = new ModelAndView();
+        User userExists = userService.findUserByUsername(user.getUsername());
+        if (userExists != null) {
+            bindingResult
+                    .rejectValue("username", "error.user",
+                            "Username has already been taken"
+                                    + " Check your details!");
+        }
+        if (bindingResult.hasErrors()) {
+            modelAndView.setViewName("403");
+        } else {
+            user.setRole(new Role(2,"user"));
+            userService.saveUser(user);
+            modelAndView.addObject("successMessage", "Registration Completed Successfully.");
+            modelAndView.addObject("user", new User());
+            modelAndView.setViewName("registration");
+        }
         return modelAndView;
     }
 
