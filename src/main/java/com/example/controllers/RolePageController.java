@@ -34,9 +34,7 @@ public class RolePageController {
         ModelAndView modelAndView= new ModelAndView();
         modelAndView.addObject("users", userService.getAll());
         modelAndView.addObject("roles", roleService.getAll());
-        modelAndView.addObject("niyazi",new Role());
         modelAndView.setViewName("editRole");
-        System.out.println(userService.findUser(2).getRole().getRole());
         return modelAndView;
     }
 

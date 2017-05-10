@@ -12,6 +12,9 @@
         <!-- Hide JavaScript
         $(document).ready(function() {
             $('#example').DataTable();
+
+            $()
+
         } );
         -->
     </script>
@@ -53,7 +56,6 @@
         <th>Enabled</th>
         <th>Rol</th>
         <th>İşlemler</th>
-
     </tr>
     </thead>
     <tbody>
@@ -62,14 +64,15 @@
         <td th:text="${user.enabled}"></td>
         <td >
             <div class="form-group">
-                <select class="form-control" id="sel1" th:field="*{roles}" >
+                <select class="form-control" id="sel1" onchange="$('#gork').val(this.value);">
                     <option value="" hidden th:text="${user.role.role}"></option>
-                    <option th:each="role : ${roles}"  th:value="${role.id}" th:text="${role.role}" ></option>
+                    <option th:each="role : ${roles}" th:value="${role.id}" th:text="${role.role}" ></option>
                 </select>
             </div></td>
         <td>
-            <form th:action="@{/role/update(id=${user.id})}"  method="post">
-                <input type="submit"  class="btn btn-info" value="Kaydet"/>
+            <form th:action="@{/role/update(id=${user.id})}" method="post">
+                <input id="gork" type="hidden"  name="roleId"/>
+                <input type="submit" class="btn btn-info" value="Kaydet"/>
             </form>
         </td>
     </tr>

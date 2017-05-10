@@ -38,9 +38,10 @@ public class RoleRestController {
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public ModelAndView update(@RequestParam int id, String role){
+    public ModelAndView update(@RequestParam int id, int roleId){
         User user= userService.findUser(id);
-        user.getRole().setRole(role);
+        Role role=roleService.findRole((roleId));
+        user.setRole(role);
         userService.saveUser(user);
         ModelAndView modelAndView = new ModelAndView("redirect:/role/edit");
 

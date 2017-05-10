@@ -32,6 +32,11 @@ public class UserRestController {
         return user;
     }
 
+    @RequestMapping(value = "/abc", method = RequestMethod.GET)
+    public List<User> deneme(){
+        return userService.findTop10ByIdDesc();
+    }
+
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public ModelAndView update(@Valid User user, BindingResult bindingResult){
         ModelAndView modelAndView = new ModelAndView();

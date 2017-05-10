@@ -43,4 +43,7 @@ public class UserService {
     public User findUserByUsername (String username){
         return userRepository.findByUsername(username);
     }
+
+    // Id'si büyük olandan başlayarak küçüğe doğru ilk 10 kişiyi getiriyor.
+    public List<User> findTop10ByIdDesc(){ return userRepository.findTop10ByOrderByIdDesc(); }
 }

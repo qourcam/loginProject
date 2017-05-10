@@ -23,7 +23,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/","/home","/registration").permitAll()
                 .antMatchers("/kaydet","/edit").hasAuthority("admin")  // kaydet ve edit sayfasını sadece admin yetkisi olan kişi görebilir
-                .antMatchers("/login").permitAll()
                 .anyRequest().authenticated()
                 .and().csrf().disable()
                 .formLogin().loginPage("/login").permitAll()

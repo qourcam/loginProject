@@ -3,6 +3,9 @@ package com.example.services;
 import com.example.entities.Student;
 import com.example.repositories.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,11 +29,23 @@ public class StudentService {
     }
 
     public List<Student> getAll(){
-        List<Student> list= (List<Student>) studentRepository.findAll();
-        return  list;
+        return  studentRepository.findAll();
+    }
+
+    public List<Student> findAll(Specification spec){
+        return studentRepository.findAll(spec);
     }
 
     public Student findByName(String name){
         return studentRepository.findStudentByName(name);
     }
+
+    public List<Student> findByLastname(String lastname, Pageable pageable){
+        Page<Student> page=studentRepository.findByLastname(lastname, pageable);
+        List<Student> list= page.getContent();
+        return list; }
+
+    public List<Student> findByLastnameOrName(String lastname, String name){
+
+        return studentRepository.findByLastnameOrName(lastname, name); }
 }
