@@ -32,6 +32,7 @@
             <li><a th:href="@{/edit}">Kayıt Düzeltme</a></li>
             <li><a th:href="@{/at}">Tüm Kullanıcılar</a></li>
             <li><a th:href="@{/passwordChange}">Şifre Değişikliği</a></li>
+             <li><a th:href="@{/permission}">Yetki</a></li>
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Rol
                     <span class="caret"></span></a>
@@ -65,8 +66,8 @@
         <td >
             <div class="form-group">
                 <select class="form-control" id="sel1" onchange="$('#gork').val(this.value);">
-                    <option value="" hidden th:text="${user.role.role}"></option>
-                    <option th:each="role : ${roles}" th:value="${role.id}" th:text="${role.role}" ></option>
+                    <option value="" hidden th:text="${user.role.name}"></option>
+                    <option th:each="role : ${roles}" th:value="${role.id}" th:text="${role.name}" ></option>
                 </select>
             </div></td>
         <td>

@@ -1,8 +1,12 @@
 package com.example.entities;
 
-import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * Created by gorkem on 13.04.2017.
@@ -10,34 +14,34 @@ import java.util.List;
 
 @Entity
 @Table(name = "school")
-public class School implements Serializable{
+public class School implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-    private String schoolName;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
+	private String schoolName;
 
-    public School () {}
+	public School() {
+	}
 
-    public School(String schoolName) {
-        this.schoolName = schoolName;
-    }
+	public School(String schoolName) {
+		this.schoolName = schoolName;
+	}
 
-    public int getId() {
-        return id;
-    }
+	public int getId() {
+		return id;
+	}
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public String getSchoolName() {
-        return schoolName;
-    }
+	public String getSchoolName() {
+		return schoolName;
+	}
 
-    public void setSchoolName(String schoolName) {
-        this.schoolName = schoolName;
-    }
-
+	public void setSchoolName(String schoolName) {
+		this.schoolName = schoolName;
+	}
 
 }

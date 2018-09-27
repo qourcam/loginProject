@@ -1,6 +1,13 @@
 package com.example.entities;
 
-import javax.persistence.*;
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  * Created by gorkem on 28.03.2017.
@@ -10,31 +17,48 @@ import javax.persistence.*;
 @Table(name = "roles")
 public class Role {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-    private String role;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
+	private String name;
 
-    public Role(){}
+	@OneToMany
+	private List<Permission> perms;
 
-    public Role(int id,String role) {
-        this.id = id;
-        this.role=role;
-    }
+	public Role() {
+	}
 
-    public int getId() {
-        return id;
-    }
+	public Role(int id, String name) {
+		this.id = id;
+		this.name = name;
+	}
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	public Role(String name) {
+		this.name = name;
+	}
 
-    public String getRole() {
-        return role;
-    }
+	public int getId() {
+		return id;
+	}
 
-    public void setRole(String role) {
-        this.role = role;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public List<Permission> getPerms() {
+		return perms;
+	}
+
+	public void setPerms(List<Permission> perms) {
+		this.perms = perms;
+	}
+
 }

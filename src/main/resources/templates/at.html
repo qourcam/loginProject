@@ -32,6 +32,7 @@
             <li><a th:href="@{/edit}">Kayıt Düzeltme</a></li>
             <li><a th:href="@{/at}">Tüm Kullanıcılar</a></li>
             <li><a th:href="@{/passwordChange}">Şifre Değişikliği</a></li>
+            <li><a th:href="@{/permission}">Yetki</a></li>
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Rol
                     <span class="caret"></span></a>
@@ -66,7 +67,7 @@
     <tr th:each="user : ${users}" class="gorkem">
         <td th:text="${user.id}"></td>
         <td th:text="${user.username}"></td>
-        <td th:text="${user.role.role}"></td>
+        <td th:text="${user.role.name}"></td>
         <td th:text="${user.enabled}"></td>
         <td>
             <div th:if="${role == 'admin'}">

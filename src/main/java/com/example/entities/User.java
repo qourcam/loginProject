@@ -1,6 +1,12 @@
 package com.example.entities;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  * Created by gorkem on 28.03.2017.
@@ -10,65 +16,63 @@ import javax.persistence.*;
 @Table(name = "users")
 public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-    @Column(unique = true)
-    private String username;
-    private String password;
-    private int enabled;
-    @ManyToOne
-    private Role role;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
+	@Column(unique = true)
+	private String username;
+	private String password;
+	private int enabled;
+	@ManyToOne
+	private Role role;
 
-    public User(){}
-    public User(String username, String password, int enabled, Role role) {
-        this.username = username;
-        this.password = password;
-        this.enabled = enabled;
-        this.role = role;
-    }
+	public User() {
+	}
 
-    public int getEnabled() {
-        return enabled;
-    }
+	public User(String username, String password, int enabled, Role role) {
+		this.username = username;
+		this.password = password;
+		this.enabled = enabled;
+		this.role = role;
+	}
 
-    public void setEnabled(int enabled) {
-        this.enabled = enabled;
-    }
+	public int getEnabled() {
+		return enabled;
+	}
 
-    public int getId() {
-        return id;
-    }
+	public void setEnabled(int enabled) {
+		this.enabled = enabled;
+	}
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	public int getId() {
+		return id;
+	}
 
-    public String getUsername() {
-        return username;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+	public String getUsername() {
+		return username;
+	}
 
-    public String getPassword() {
-        return password;
-    }
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	public String getPassword() {
+		return password;
+	}
 
-    public Role getRole() {
-        return role;
-    }
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-    public void setRole(Role role) {
-        this.role = role;
-    }
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
 }
-
-
-
-

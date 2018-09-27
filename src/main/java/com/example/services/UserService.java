@@ -1,11 +1,12 @@
 package com.example.services;
 
-import com.example.entities.User;
-import com.example.repositories.UserRepository;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import com.example.entities.User;
+import com.example.repositories.UserRepository;
 
 /**
  * Created by gorkem on 31.03.2017.
@@ -14,36 +15,40 @@ import java.util.List;
 @Service("userService")
 public class UserService {
 
-    @Autowired
-    UserRepository userRepository;
+	@Autowired
+	UserRepository userRepository;
 
-    public UserService(UserRepository userRepository){
-        this.userRepository=userRepository;
-    }
+	public UserService(UserRepository userRepository) {
+		this.userRepository = userRepository;
+	}
 
-    public User findUser(int id){
-        return userRepository.findOne(id);
-    }
+	public User findUser(int id) {
+		return userRepository.findOne(id);
+	}
 
-    public List<User> getAll(){
-        List<User> list= (List<User>) userRepository.findAll();
-        return list;
-    }
+	public List<User> getAll() {
+		List<User> list = (List<User>) userRepository.findAll();
+		return list;
+	}
 
-    public String getUserName(int id){
-        return userRepository.findOne(id).getUsername();
-    }
+	public String getUserName(int id) {
+		return userRepository.findOne(id).getUsername();
+	}
 
-    public void saveUser(User user){
-        userRepository.save(user);
-    }
+	public void saveUser(User user) {
+		userRepository.save(user);
+	}
 
-    public void deleteUser(int id) { userRepository.delete(id);}
+	public void deleteUser(int id) {
+		userRepository.delete(id);
+	}
 
-    public User findUserByUsername (String username){
-        return userRepository.findByUsername(username);
-    }
+	public User findUserByUsername(String username) {
+		return userRepository.findByUsername(username);
+	}
 
-    // Id'si büyük olandan başlayarak küçüğe doğru ilk 10 kişiyi getiriyor.
-    public List<User> findTop10ByIdDesc(){ return userRepository.findTop10ByOrderByIdDesc(); }
+	// Id'si büyük olandan başlayarak küçüğe doğru ilk 10 kişiyi getiriyor.
+	public List<User> findTop10ByIdDesc() {
+		return userRepository.findTop10ByOrderByIdDesc();
+	}
 }
